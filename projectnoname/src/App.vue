@@ -34,7 +34,7 @@ import navSito from './components/navSitoComponent.vue';
 
 
 <style scoped>
-@import url('@/assets/base.css');
+@import url('@/assets/css/base.css');
 
 
 
