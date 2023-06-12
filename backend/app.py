@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from flask import jsonify
 
 from flask_cors import CORS
@@ -24,6 +25,19 @@ firebase_admin.initialize_app(credenciales, {
 # Obtenermos una referecia de la base de datos
 referencia = db.reference('/usuario')
 
+
+#================================================================================================
+# Peticiones
+
+@app.route('/crear_usuario', methods=['POST'])
+def crear_usuario():
+    respuesta = None
+    
+    if request.method == 'POST':
+        pass
+    
+    respuesta = 'Peticion invalida.'
+    return respuesta
     
 
 
