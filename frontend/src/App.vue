@@ -10,6 +10,7 @@
         <router-view /> <!---Esto se pone si osi , para tomar las rutas-->
 
 
+        <footerSito/>
     </div>
 
 
@@ -22,7 +23,7 @@
 
 
 <script setup>
-
+import footerSito from './components/footerComponent.vue'
 import navSito from './components/navSitoComponent.vue';
 
 

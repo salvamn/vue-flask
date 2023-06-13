@@ -69,10 +69,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url(@/assets/img/portadas/portada2.jpg);
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+
     position: relative;
 }
 
@@ -104,5 +101,12 @@
 #contenido_principal_inicio_bottom img{
 width: 3em;
 cursor: pointer;
+}
+
+
+#contenedor_secundario_inicio{
+    width: 100%;
+    height: 60%;
+    background-color: rgba(0, 0, 0, 0.486);
 }
 </style>
