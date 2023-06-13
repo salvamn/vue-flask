@@ -1,4 +1,8 @@
 <template>
+
+<navSito/>
+
+
     <div id="contenedor_principal_inicio">
 
         <div id="contenido_principal_inicio_top">
@@ -37,6 +41,7 @@
 
 
 <script setup>   /* setup = Composition API */
+import navSito from '@/components/navSitoComponent.vue';
 
 
 

@@ -1,6 +1,6 @@
 <template>
 
-
+<navSito/>
 
 
 
@@ -45,12 +45,14 @@
 
 
 <script setup>
-
+import navSito from '@/components/navSitoComponent.vue';
 
 import { ref } from 'vue'
 import { useStore } from 'vuex';
+import {useRouter} from 'vue-router';  /**/
 
 const store = useStore();
+const router = useRouter();  /**/
 
 const nombre = ref ('');
 const correo = ref ('');
@@ -70,6 +72,7 @@ const crearUsuario = async () => {
   try {
     const respuesta = await store.dispatch('crearUsuario', usuario);
     console.log('Usuario creado:', respuesta);
+    router.push('/todo');/**/
   } catch (error) {
     console.error('error al crear el usaurio:', error);
    

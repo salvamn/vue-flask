@@ -15,7 +15,7 @@
 
             <router-link id="rutas" to="/inicio" title="inicio"><img src="@/assets/img/icons/inicio.png" alt=""></router-link>    <!--Router link es como si fuera a href, se pone un to="/inicio" dónde lo redirije a inicio(view) logicamente-->
             <router-link id="rutas" to="/usuarios/crear" title="/usuarios/crear"><img src="@/assets/img/icons/tareas.png" alt=""></router-link>
-            <router-link id="rutas" to="/usuarios" title="usuarios"><img src="@/assets/img/icons/nosotros.png" alt=""></router-link>      <!--Router link es como si fuera a href, se pone un to="/nosotros" dónde lo redirije a nosotros(view) logicamente-->
+            <!---<router-link id="rutas" to="/usuarios" title="usuarios"><img src="@/assets/img/icons/nosotros.png" alt=""></router-link>-->
 
         </div>
 

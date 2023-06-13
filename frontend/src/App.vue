@@ -3,7 +3,7 @@
     <div id ="app"> <!---Acá sera nuestra aplicación donde pondremos los componentes que mandan para mostrar-->
 
 
-        <navSito/>
+        
 
 
         <router-view /> <!---Esto se pone si osi , para tomar las rutas-->
@@ -26,8 +26,9 @@
 
 
 <script setup>
+
 import footerSito from './components/footerComponent.vue'
-import navSito from './components/navSitoComponent.vue';
+
 
 
 
