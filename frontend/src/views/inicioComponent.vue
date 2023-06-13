@@ -9,17 +9,17 @@
 
             <span>Bienvenido a nuestra Web!</span>
 
-                
+            <!---<test style="position: absolute; bottom: 0;"/>-->  
         </div>
-
+        
         <div id="contenido_principal_inicio_bottom">
             <img src="@/assets/img/icons/flechita.png" alt="sobrenosotros">
         </div>
 
-
+        
     </div>
-
-
+    
+   
 
     <div id="contenedor_secundario_inicio">
 
@@ -36,7 +36,7 @@
 
     </div>
 
-
+    
 
 
 </template>
@@ -47,7 +47,7 @@
 
 <script setup>   /* setup = Composition API */
 
-
+//import test from '@/components/testComponent.vue'
 
 
 
@@ -79,10 +79,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.582);
+    width: 60%;
+    background: rgba(0, 0, 0, 0.26);
     height: 30%;
     padding: 20px;
+    border-radius: 10px;
 
 }
 

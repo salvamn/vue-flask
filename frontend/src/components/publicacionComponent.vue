@@ -124,7 +124,7 @@ const agregarPublicacion = () => {
 
 
 
-<style>
+<style scoped>
 .contenedor_general{
     width: 100%;
     height: 100%;

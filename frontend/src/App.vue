@@ -6,11 +6,14 @@
         <navSito/>
 
 
-
         <router-view /> <!---Esto se pone si osi , para tomar las rutas-->
 
 
         <footerSito/>
+
+
+
+
     </div>
 
 

@@ -1,18 +1,16 @@
 <template>
 
 
-<div id="contenedor_principal_inicio">
+<div>
+    <publicacion/>
+</div>
 
 
 
 
+<div>
 
-<publicacion/>
-
-
-
-
-
+asd
 </div>
 
 
@@ -37,10 +35,10 @@ import publicacion from '@/components/publicacionComponent.vue';
 
 
 <style scoped>
-#contenedor_principal_inicio{
+#contenedor_principal_tareas{
     width: 100%;
     background: rgb(27, 27, 27);
-    height: 93%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

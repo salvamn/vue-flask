@@ -43,7 +43,7 @@ export default {
   
 
 
-<style>
+<style scoped>
 
 .contenedor_resultados{
   width: 50%;

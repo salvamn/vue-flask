@@ -2,7 +2,7 @@
 
 <div id="contenedor_footer">
 
-    <p>© 2023 Todos los derechos reservados</p>
+    <p>Hecho por nosotros {FLASK-VUEJS}</p>
 
 </div>
 
@@ -34,6 +34,8 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(5, 5, 5);
+    position: fixed;
+    bottom: 0;
 }
 
 
