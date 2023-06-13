@@ -21,7 +21,7 @@ const store = createStore({
   actions: {
     async crearUsuario({ commit }, usuario) {
       try {
-        const response = await axios.post('http://127.0.0.1:5000/crear_usuario', usuario);
+        const response = await axios.post('http://localhost:5000/crear_usuario', usuario);
         commit('agregarUsuario', response.data.respuesta);
         return response.data.respuesta;
       } catch (error) {
