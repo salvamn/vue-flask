@@ -40,7 +40,7 @@
 <style scoped>   /* scoped quiere decir que mapea los estilos que le pondremos en este componente */
 #contenedor_principal_inicio{
     width: 100%;
-    background: rgb(14, 13, 13);
+    background-image: url(@/assets/img/portadas/cool.png);
     height: 93%;
     display: flex;
     justify-content: center;
