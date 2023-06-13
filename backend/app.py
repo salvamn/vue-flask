@@ -22,7 +22,7 @@ firebase_admin.initialize_app(credenciales, {
     'databaseURL': 'https://noname-c5a2b-default-rtdb.firebaseio.com/'
 })
 
-# Obtenermos una referecia de la base de datos
+# Obtenermos una referencia de la base de datos
 referencia = db.reference('/usuario')
 
 
@@ -34,10 +34,40 @@ def crear_usuario():
     respuesta = None
     
     if request.method == 'POST':
-        pass
+        nombre = request.form['nombre']
+        correo = request.form['correo']
+        nombre_usuario = request.form['nombre_usuario']
+        contrasenia = request.form['contrasenia']
+        
+        from models import Usuario
+        
+        nuevo_usuario = Usuario(
+            nombre=nombre,
+            correo=correo,
+            nombre_usuario=nombre_usuario,
+            contrasenia=contrasenia,
+        )
+        
+        print(nuevo_usuario.__dict__)
+        
+        try:
+            respuesta = referencia.push().set({
+                nuevo_usuario.__dict__
+            })  
+            
+            respuesta = f'Nuevo usuario creado: {nombre}'
+            
+            return jsonify({'respuesta': respuesta})
+            
+        except Exception as e:
+            print(e)
+            respuesta = str(e)
+            return jsonify({'respuesta': respuesta})
+    
+        
     
     respuesta = 'Peticion invalida.'
-    return respuesta
+    return jsonify({'respuesta': respuesta})
     
 
 
