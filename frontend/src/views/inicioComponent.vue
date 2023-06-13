@@ -7,7 +7,7 @@
 
 
 
-        <publicacion/>
+        
         
        
 
@@ -23,7 +23,7 @@
 
 <script setup>   /* setup = Composition API */
 
-import publicacion from '@/components/publicacionComponent.vue';
+
 
 
 

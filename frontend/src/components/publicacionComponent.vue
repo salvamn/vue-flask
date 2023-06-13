@@ -32,10 +32,14 @@
 
 
 
-<script>
+<script setup>
 import resultados from './ResultadosComponent.vue';
-import { useStore } from 'vuex';
 
+// import { useStore } from 'vuex';
+
+
+// Option APi Ejemplo
+/*
 export default{
 
     components:{
@@ -69,6 +73,8 @@ export default{
 
 
 
+    
+
     setup(){
         const store = useStore();
         const publicaciones = store.state.publicaciones;
@@ -80,11 +86,32 @@ export default{
     }
 
 
-    
-
 
 }
+*/
 
+
+
+
+
+
+// Composition APi Ejemplo
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex';
+ 
+const store = useStore();
+
+const nuevaPublicacion = ref('');
+const publicaciones = computed(() => store.state.publicaciones)
+
+const agregarPublicacion = () => {
+    const publicacion = {
+        id: Date.now(),
+        texto: nuevaPublicacion.value,
+    };
+    store.commit('agregarPublicacion', publicacion);
+    nuevaPublicacion.value = '';
+}
 
 </script>
 

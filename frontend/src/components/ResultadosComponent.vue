@@ -10,7 +10,6 @@
     {{ publicacion.texto }}
 
 
-
   </div>
 
 </div>
