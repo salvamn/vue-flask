@@ -1,17 +1,34 @@
 <template>
 
 
-<div>
-    <publicacion/>
-</div>
+
+
+    <section id="contenedor_conjunto">
+
+
+
+        <div id="contenedor_top_tareas">
+
+            <publicacion />
+
+        </div>
 
 
 
 
-<div>
+        <div id="contenedor_top_bottom">
 
-asd
-</div>
+            <div id="contenedor_top_bottom_interno">
+
+                <router-link to="/"></router-link>
+            </div>
+
+        </div>
+
+
+
+    </section>
+
 
 
 </template>
@@ -35,18 +52,19 @@ import publicacion from '@/components/publicacionComponent.vue';
 
 
 <style scoped>
-#contenedor_principal_tareas{
+#contenedor_conjunto {
     width: 100%;
-    background: rgb(27, 27, 27);
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
-
-
-
-
+#contenedor_top_tareas {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
