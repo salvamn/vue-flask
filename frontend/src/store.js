@@ -16,11 +16,11 @@ const store = createStore({
         }
   },
   actions: {
-    crearusuario({ commit }, usuario) {
+    crearUsuario({ commit }, usuario) {
       return axios.post('http://127.0.0.1:5000/crear_usuario', usuario)
         .then(response => {
-          commit('agregarUsuario', response.data);
-          return response.data;
+          commit('agregarUsuario', response.data.respuesta);
+          return response.data.respuesta;
         })
         .catch(error => {
           console.error('Error al crear el usuario:', error);

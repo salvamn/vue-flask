@@ -11,16 +11,16 @@
         <div id="contenedor_top_bottom">
 
           
-                <form @submit.prevent="crearusaurio">
+                <form @submit.prevent="crearUsuario">
 
                     <label for="nombre">nombre</label>
                     <input type="text" v-model="nombre" id="nombre">
                     <label for="email">email</label>
-                    <input type="text" v-model="email" id="email">
+                    <input type="text" v-model="correo" id="email">
                     <label for="email">nombre_usuario</label>
                     <input type="text" v-model="nombre_usuario" id="email">
                     <label for="email">contraseña</label>
-                    <input type="text" v-model="contraseña" id="email">
+                    <input type="text" v-model="contrasenia" id="email">
                     <button type="submit">crear usuario</button>
 
                 </form>
@@ -39,23 +39,48 @@
 <script>
 //import publicacion from '@/components/publicacionComponent.vue';
 import { useStore } from 'vuex';
+import {ref} from 'vue'
+
+
+
+
 
 export default {
   setup() {
-    const store = useStore();
 
-    const crearusaurio = (usuario) => {
+    const store = useStore();
+    const nombre = ref('');
+    const correo = ref('');
+    const nombre_usuario = ref('');
+    const contrasenia = ref('');
+
+    const crearUsuario = () => {
+      const usuario = {
+        nombre: nombre.value,
+        correo: correo.value,
+        nombre_usuario: nombre_usuario.value,
+        contrasenia: contrasenia.value
+      }
+
+    
       store.dispatch('crearUsuario', usuario)
-        .then(respuesta => {
-          console.log('usuario creado:', respuesta);
-        })
-        .catch(error => {
-          console.error('error al crear el usuario', error);
-        });
-    };
+      .then(respuesta => {
+        console.log('usuario creado:', respuesta)
+      })
+      .catch(error => {
+        console.error('error al crear el usaurio',error)
+      })
+
+
+    }
 
     return {
-      crearusaurio
+      nombre,
+      correo,
+      nombre_usuario,
+      contrasenia,
+      crearUsuario
+
     };
   }
 }
