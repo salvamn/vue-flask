@@ -1,5 +1,8 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+
+
+
 const store = createStore({
   state() {
     return {
@@ -16,16 +19,15 @@ const store = createStore({
         }
   },
   actions: {
-    crearUsuario({ commit }, usuario) {
-      return axios.post('http://127.0.0.1:5000/crear_usuario', usuario)
-        .then(response => {
-          commit('agregarUsuario', response.data.respuesta);
-          return response.data.respuesta;
-        })
-        .catch(error => {
-          console.error('Error al crear el usuario:', error);
-          throw error;
-        });
+    async crearUsuario({ commit }, usuario) {
+      try {
+        const response = await axios.post('http://127.0.0.1:5000/crear_usuario', usuario);
+        commit('agregarUsuario', response.data.respuesta);
+        return response.data.respuesta;
+      } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        throw error;
+      }
     }
   }
 });
