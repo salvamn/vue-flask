@@ -4,6 +4,7 @@ const store = createStore({
   state() {
     return {
       publicaciones: [], // Estado de publicaciones en este caso lo dejamos vacío
+      usuarios: [],
     }
   },
   mutations: {

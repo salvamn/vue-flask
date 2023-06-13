@@ -9,7 +9,7 @@
 
         <div id="contenedor_top_tareas">
 
-            <publicacion />
+            <publicacion/>
 
         </div>
 
@@ -18,10 +18,21 @@
 
         <div id="contenedor_top_bottom">
 
-            <div id="contenedor_top_bottom_interno">
+          
+            <div>
 
-                <router-link to="/"></router-link>
+                <form @submit.prevent="crearusaurio"> 
+
+
+
+                </form>
+
+
+
+
             </div>
+
+
 
         </div>
 
