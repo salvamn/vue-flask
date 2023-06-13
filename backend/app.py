@@ -13,7 +13,7 @@ import json
 
 # Creamos las instancias
 app = Flask(__name__)
-CORS(app=app, origins=['*'])
+CORS(app=app, resources={r"/*": {"origins": "*"}})
 
 
 # Configuramos Firebase
@@ -35,10 +35,12 @@ def crear_usuario():
     respuesta = None
     
     if request.method == 'POST':
-        nombre = request.form['nombre']
-        correo = request.form['correo']
-        nombre_usuario = request.form['nombre_usuario']
-        contrasenia = request.form['contrasenia']
+        datos = request.get_json()
+
+        nombre = datos['nombre']
+        correo = datos['correo']
+        nombre_usuario = datos['nombre_usuario']
+        contrasenia = datos['contrasenia']
                 
         from models import Usuario
         
