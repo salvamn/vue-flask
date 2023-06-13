@@ -13,7 +13,7 @@ import json
 
 # Creamos las instancias
 app = Flask(__name__)
-CORS(app=app)
+CORS(app=app, origins=['*'])
 
 
 # Configuramos Firebase
