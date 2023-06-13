@@ -41,6 +41,8 @@
 #contenedor_principal_inicio{
     width: 100%;
     background-image: url(@/assets/img/portadas/cool.png);
+    background-size: cover;
+    background-position: center;
     height: 93%;
     display: flex;
     justify-content: center;

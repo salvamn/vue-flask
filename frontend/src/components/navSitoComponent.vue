@@ -5,7 +5,7 @@
 
         <div id="contenedor_logo">
 
-            <strong>creando</strong>
+            <img src="@/assets/img/icons/codigo.png" alt="">
             
         </div>
 
@@ -16,6 +16,7 @@
             <router-link id="rutas" to="/inicio" title="inicio"><img src="@/assets/img/icons/inicio.png" alt=""></router-link>    <!--Router link es como si fuera a href, se pone un to="/inicio" dónde lo redirije a inicio(view) logicamente-->
             <router-link id="rutas" to="/nosotros" title="nosotros"><img src="@/assets/img/icons/nosotros.png" alt=""></router-link>      <!--Router link es como si fuera a href, se pone un to="/nosotros" dónde lo redirije a nosotros(view) logicamente-->
             <router-link id="rutas" to="/tareas" title="tareas"><img src="@/assets/img/icons/tareas.png" alt=""></router-link>
+
         </div>
 
     </nav>
@@ -49,12 +50,17 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 15px;
+    padding: 7px;
 }
 
 #navSito #contenedor_logo{
     color: white;
     font-size: 30px;
+}
+
+#navSito #contenedor_logo img{
+    width: 2em;
+    filter: invert(100%);
 }
 
 #navSito #contenedor_rutas {
