@@ -50,7 +50,10 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 7px;
+    padding: 5px;
+    position: fixed;
+    top: 0;
+    z-index: 99999;
 }
 
 #navSito #contenedor_logo{
@@ -59,7 +62,7 @@
 }
 
 #navSito #contenedor_logo img{
-    width: 2em;
+    width: 1.5em;
     filter: invert(100%);
 }
 

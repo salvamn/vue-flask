@@ -96,6 +96,9 @@ export default{
 
 
 // Composition APi Ejemplo
+
+
+
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex';
  
@@ -112,6 +115,10 @@ const agregarPublicacion = () => {
     store.commit('agregarPublicacion', publicacion);
     nuevaPublicacion.value = '';
 }
+
+
+
+
 
 </script>
 
