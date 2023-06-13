@@ -9,6 +9,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 
 import os
+import json
 
 # Creamos las instancias
 app = Flask(__name__)
@@ -38,7 +39,7 @@ def crear_usuario():
         correo = request.form['correo']
         nombre_usuario = request.form['nombre_usuario']
         contrasenia = request.form['contrasenia']
-        
+                
         from models import Usuario
         
         nuevo_usuario = Usuario(
@@ -47,14 +48,9 @@ def crear_usuario():
             nombre_usuario=nombre_usuario,
             contrasenia=contrasenia,
         )
-        
-        print(nuevo_usuario.__dict__)
-        
-        try:
-            respuesta = referencia.push().set({
-                nuevo_usuario.__dict__
-            })  
-            
+                
+        try:            
+            referencia.push(nuevo_usuario.serializar_json())
             respuesta = f'Nuevo usuario creado: {nombre}'
             
             return jsonify({'respuesta': respuesta})
