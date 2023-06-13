@@ -8,17 +8,20 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
+from config import Config
+
 import os
 import json
 
 # Creamos las instancias
 app = Flask(__name__)
+app.config.from_object(obj=Config)
 CORS(app=app, resources={r"/*": {"origins": "*"}})
 
 
 # Configuramos Firebase
-ruta_absoluta_certificado = os.path.join(os.getcwd(), 'private', 'noname-c5a2b-firebase-adminsdk-6ewv6-761782c88f.json')
-credenciales = credentials.Certificate(cert=ruta_absoluta_certificado)
+
+credenciales = credentials.Certificate(cert=Config.CREDENCIAL_FIREBASE)
 firebase_admin.initialize_app(credenciales, {
     'databaseURL': 'https://noname-c5a2b-default-rtdb.firebaseio.com/'
 })
