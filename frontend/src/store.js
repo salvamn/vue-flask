@@ -16,7 +16,7 @@ const store = createStore({
         }
   },
   actions: {
-    crearUsuario({ commit }, usuario) {
+    crearusuario({ commit }, usuario) {
       return axios.post('http://127.0.0.1:5000/crear_usuario', usuario)
         .then(response => {
           commit('agregarUsuario', response.data);
