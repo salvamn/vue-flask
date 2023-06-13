@@ -101,7 +101,7 @@ export default{
 
 .contenedor_izquierdo{
     width: 20%;
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0);
     height: 100%;
     display: flex;
     justify-content: center;
@@ -128,7 +128,12 @@ form button{
 .contenedor_derecho{
     width: 50%;
     height: 100%;
-    background-color: green;
+    background-color: rgba(0, 128, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
 }
 .inputclass::placeholder{
     color: black;
