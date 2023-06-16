@@ -66,11 +66,11 @@
 
 <script>
 
-import { mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
+
 
 export default {
   components: {
-    
   },
   data() {
     return {
@@ -81,7 +81,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['crearUsuario']),
     async crearUsuario() {
       const usuario = {
         nombre: this.nombre,
@@ -92,7 +91,7 @@ export default {
       try {
         const respuesta = await this.$store.dispatch('crearUsuario', usuario);
         console.log(respuesta);
-        /*router.push('/to_do');*/
+        //router.push('/');
       } catch (error) {
         console.error(error);
       }

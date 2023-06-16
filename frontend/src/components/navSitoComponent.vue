@@ -14,8 +14,8 @@
         <div id="contenedor_rutas">
 
             <router-link id="rutas" to="/Inicio" title="inicio"><img src="@/assets/img/icons/inicio.png" alt=""></router-link>  
-            <router-link id="rutas" to="/login" title="inicio">Iniciar Sesion</router-link>  
-            <router-link id="rutas" to="/registrar" title="registrate">Registrate</router-link>
+            <router-link id="rutas" to="/login" title="iniciar sesion">Iniciar Sesion</router-link>  
+            <router-link id="rutas" to="/registrar" title="registrarse">¿No tienes una cuenta?</router-link>
 
 
         </div>

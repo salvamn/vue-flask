@@ -52,10 +52,42 @@
 
 
 <script>
+import { mapState, mapMutations } from 'vuex';
 
+export default {
+  data() {
+    return {
+      nombre_usuario: '',
+      contrasenia: ''
+    };
+  },
+  methods: {
+    ...mapMutations(['establecerUsuarioConectado']), 
+    async login() {
+      try {
+        const respuesta = await axios.post('', { nombre_usuario: this.nombre_usuario, contrasenia: this.contrasenia });
 
+         if (respuesta.data.authenticated) {
+           this.establecerUsuarioConectado(true); 
+           this.$router.push('/panel');
+         } else {
+          console.log('autenticacion fallado');
+        }
 
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  },
+  computed: {
+    ...mapState(['UsuarioConectado']),
+  },
+};
 </script>
+
+<style scoped>
+@import url('@/assets/css/formulario.css');
+</style>
 
 
 
