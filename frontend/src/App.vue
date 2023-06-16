@@ -3,10 +3,9 @@
     <div id ="app"> <!---Acá sera nuestra aplicación donde pondremos los componentes que mandan para mostrar-->
 
 
-        
+        <navSito/>
 
-
-        <router-view /> <!---Esto se pone si osi , para tomar las rutas-->
+        <router-view/> <!---Esto se pone si osi , para tomar las rutas-->
 
 
         <footerSito/>
@@ -25,11 +24,17 @@
 
 
 
-<script setup>
+<script>
+import navSito from '@/components/navSitoComponent.vue';
 
-import footerSito from './components/footerComponent.vue'
+import footerSito from '@/components/footerComponent.vue';
 
-
+export default {
+    components: {
+        navSito,
+        footerSito
+    }
+}
 
 
 </script>
@@ -38,7 +43,7 @@ import footerSito from './components/footerComponent.vue'
 
 
 
-<style scoped>
+<style>
 @import url('@/assets/css/base.css');
 
 

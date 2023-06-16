@@ -1,6 +1,6 @@
 <template>
 
-<navSito/>
+
 
 
     <div id="contenedor_principal_inicio">
@@ -19,30 +19,18 @@
     </div>
 
 
-
-    <div id="contenedor_secundario_inicio">
-
-
-        <div id="contenido_secundario_incio">
-
-
-
-
-        </div>
-
-
-
-
-    </div>
 </template>
 
 
 
 
 
-<script setup>   /* setup = Composition API */
-import navSito from '@/components/navSitoComponent.vue';
-
+<script>  
+export default{
+    components: {
+      
+    }
+}
 
 
 </script>
@@ -61,7 +49,7 @@ import navSito from '@/components/navSitoComponent.vue';
        justify-content: center;
        align-items: center;
        flex-direction: column;
-       background: rgba(0, 0, 0, 0.021);
+       background: rgba(0, 0, 0, 0.199);
 
    }
 
@@ -100,10 +88,4 @@ import navSito from '@/components/navSitoComponent.vue';
        cursor: pointer;
    }
 
-
-   #contenedor_secundario_inicio {
-       width: 100%;
-       height: 60%;
-       background-color: rgba(0, 0, 0, 0.815);
-   }
 </style>

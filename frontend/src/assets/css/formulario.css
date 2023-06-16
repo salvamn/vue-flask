@@ -1,0 +1,151 @@
+#contenedor_conjunto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.116);
+}
+
+
+#contenido {
+    /*background: red;*/
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    /*background-color: red;*/
+    gap: 20px;
+}
+
+
+#contenido_izquierdo{
+    font-size: 2.5rem;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background-color: green;*/
+}
+
+#contenido_medio{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#linea{
+  border: none;
+  border: 2px solid rgb(255, 255, 255);
+  height: 300px; 
+  width: 0;
+}
+
+#contenido_derecho{
+    background-color: rgba(0, 0, 0, 0.644);
+    padding: 20px; 
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: black;
+    max-width: 100%;
+    gap: 20px;
+}
+
+#contenedor_label_input{
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-top: 10px;
+}
+
+form input {
+    box-sizing: border-box;
+    background-color: #546e7a21;
+    border: 1px solid #546E7A;
+    border-radius: 3px;
+    font-size: 1rem;
+    outline: 0;
+    padding: 0.8rem;
+    transition: all 600ms ease;
+    width: 400px;
+
+}
+
+form input:focus,
+input:active {
+    background: rgba(255, 255, 255, 0.932);
+    color: #020202;
+}
+
+form input::placeholder {
+    color: rgb(255, 253, 253);
+}
+
+#contenedor_boton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+
+}
+
+#contenedor_boton button{
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 7px;
+    width: 100%;
+    outline: 0;
+    border: 0;
+}
+
+#contenedor_boton button:hover{
+    background-color: rgba(255, 255, 255, 0.76);
+    outline: 0;
+    border: 0;
+    color: rgb(3, 3, 3);
+    cursor: pointer;
+}
+
+
+
+
+@media (max-width: 743px) {
+    #contenido_izquierdo h1{
+        font-size: 50px;
+        height: 20%;
+    }
+
+    #contenido_medio{
+        width: 100%;
+    }
+
+    #contenido_medio #linea{
+        display: flex;
+        border: none;
+        border: 2px solid rgb(255, 255, 255);
+        height: 0; 
+        width:350px;
+    }
+}
+ 

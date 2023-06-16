@@ -1,8 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';                            //Importación de todo como router,store,mutations,actions,etc.  
-import router from './router.js';
+import router from './router/router.js';
 
-import store from './store.js' //lo incorporé
+import store from './store/index.js' //lo incorporé
 
 
 
