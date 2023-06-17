@@ -11,7 +11,6 @@ npm install vue-router
 
 
 
-
 ### Con esto se ejecuta la app de vue JS, osea el servidor de vue.
 
 npm run serve
