@@ -25,13 +25,39 @@ class Usuario:
         self.fecha_registro = date.today().strftime("%d/%m/%Y")
         self.is_admin = is_admin
         
+    def __repr__(self) -> str:
+        return self.nombre_usuario
     
     def serializar_json(self):
         return {'id': self.id, 'nombre': self.nombre, 'correo': self.correo, 'nombre_usuario': self.nombre_usuario, 'contrasenia': self.contrasenia, 'fecha_registro': self.fecha_registro, 'is_admin': str(self.is_admin)}
         
         
-
+class Tarea:
+    id: int
+    titulo: str
+    descripcion: str
+    estado: bool
+    prioridad: str # baja - media - alta
+    fecha_creacion_todo: str
+    
+    nombre_usuario: str
+    
+    def __init__(self, titulo, descripcion, prioridad, nombre_usuario, id=None) -> None:
+        self.id = id
+        self.titulo = titulo
+        self.descripcion = descripcion
+        self.estado = True
+        self.prioridad = prioridad
+        self.fecha_creacion_todo = date.today().strftime("%d/%m/%Y")
+        self.nombre_usuario = nombre_usuario
         
+    def __repr__(self) -> str:
+        return self.titulo
+    
+    def serializar_json(self):
+        return {'id': self.id, 'titulo': self.titulo, 'descripcion': self.descripcion, 'estado': self.estado, 'prioridad': self.prioridad, 'fecha_creacion_todo': self.fecha_creacion_todo, 'nombre_usuario': self.nombre_usuario}
+        
+    
     
 
 
