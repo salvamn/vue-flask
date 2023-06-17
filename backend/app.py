@@ -34,9 +34,17 @@ referencia = db.reference('/usuario')
 # Peticiones
 
 @app.route('/crear_usuario', methods=['POST'])
-def crear_usuario():
-    respuesta = None
+def crear_usuario() -> dict:
+    """Este `endpoint` permite la creacion de un usuario mediante un peticion http `post`, recibe un `json` con cuatro propiedades.
     
+    nombre -- description\n
+    correo -- description\n
+    nombre_usuario -- description\n
+    contrasenia -- description\n
+    
+    Return: json con su respuesta.
+    """
+        
     if request.method == 'POST':
         datos = request.get_json()
 
@@ -47,12 +55,7 @@ def crear_usuario():
                 
         from models import Usuario
         
-        nuevo_usuario = Usuario(
-            nombre=nombre,
-            correo=correo,
-            nombre_usuario=nombre_usuario,
-            contrasenia=contrasenia,
-        )
+        nuevo_usuario = Usuario(nombre=nombre, correo=correo, nombre_usuario=nombre_usuario, contrasenia=contrasenia)
                 
         try:            
             referencia.push(nuevo_usuario.serializar_json())
@@ -70,6 +73,64 @@ def crear_usuario():
     respuesta = 'Peticion invalida.'
     return jsonify({'respuesta': respuesta})
     
+
+
+@app.route('/login', methods=['POST'])
+def login() -> dict:
+    """sumary_line
+    
+    Keyword arguments:
+    argument -- description
+    Return: return_description
+    """
+    
+    if request.method == 'POST':
+        datos = request.get_json()
+        
+        nombre_usuario = datos['nombre_usuario']
+        contrasenia = datos['contrasenia']
+        
+        
+    
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/crear_tarea', methods=['POST'])
+def crear_tarea():
+    if request.method == 'POST':
+        datos = request.get_json()
+        
+        titulo = datos['titulo']
+        correo = datos['correo']
+        nombre_usuario = datos['nombre_usuario']
+        
+        from models import Tarea
+        
+        tarea = Tarea()
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == '__main__':
