@@ -24,4 +24,4 @@ const router = createRouter({  /* Acá definimos como enrutador en general dónd
 
 
 
-export default router;   /* esto es simplemente exportar la configuración para usarlo en MAIN.JS que está en la esctructura del proyecto */
+export default router;  

@@ -34,7 +34,7 @@
               </div>
 
               <div id="contenedor_label_input">   
-                  <!--<label for="email">Contraseña</label>--->
+                 
                   <input type="text" v-model="contrasenia" id="email" placeholder="Ingresa tu contraseña">
               </div>
 
