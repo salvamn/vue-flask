@@ -75,6 +75,7 @@
 <script>
 
 import { mapState } from 'vuex';
+import { required, minLenght } from 'vuelidate/lib/validators/'
 
 
 export default {
@@ -104,6 +105,15 @@ export default {
         console.error(error);
       }
     },
+
+    validations: {
+      nombre: {
+        required,
+        minLenght
+      }
+    }
+
+
   },
   computed: {
     ...mapState(['usuarios']),
