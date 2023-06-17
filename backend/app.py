@@ -90,23 +90,7 @@ def login() -> dict:
         nombre_usuario = datos['nombre_usuario']
         contrasenia = datos['contrasenia']
 
-        usuario = referencia.order.by.cnhild('nombre_usuario').equals_to(nombre_usuario).get()
-        
-        if usuario:
-            for usuario in usuario.items():
-                usuario_data = usuario
-                break
-            if usuario_data['contrasenia'] == contrasenia:
-                respuesta = {'authenticated': True}
-            else:
-                respuesta= {'authenticated': False, 'message':'credenciales invalidas'}
-        else:
-            respuesta = {'authenticated': False,'message':'credenciales invalidas'} 
 
-    else:
-        respuesta = {'message': 'peticion invalida'}
-
-    return jsonify(respuesta)
 
 
 
