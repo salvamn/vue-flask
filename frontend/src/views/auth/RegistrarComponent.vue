@@ -91,7 +91,7 @@ export default {
       try {
         const respuesta = await this.$store.dispatch('crearUsuario', usuario);
         console.log(respuesta);
-        //router.push('/');
+        //this.$router.push('/panel');
       } catch (error) {
         console.error(error);
       }

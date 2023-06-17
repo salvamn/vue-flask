@@ -53,6 +53,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import axios from 'axios'
 
 export default {
   data() {
