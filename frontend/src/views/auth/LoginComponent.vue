@@ -21,18 +21,28 @@
 
 
                 <form @submit.prevent="crearUsuario" action="POST">
+
                     <div id="contenedor_label_input">   
-                        <!--<label for="email">Nombre Usuario</label>-->
-                        <input type="text" v-model="nombre_usuario" id="email" placeholder="Ingresa tu nombre de usuario">
+                
+                        <input type="text" v-model="nombre_usuario" nombre="nombre_usuario" placeholder="Ingresa tu nombre de usuario">
+  
+                        <div v-if="v$?.nombre_usuario?.$error && nombre_usuario.length === 0">Ingresa tu nombre de usuario</div>
+ 
+                        <div v-if="v$?.nombre_usuario?.minLength.$error && nombre_usuario.length > 0"> el campo debe contener al menos 4 caracteres</div>
+                      
                     </div>
                     
                     <div id="contenedor_label_input">   
-                        <!--<label for="email">Contraseña</label>--->
-                        <input type="text" v-model="contrasenia" id="email" placeholder="Ingresa tu contraseña">
+            
+                        <input type="text" v-model="contrasenia" nombre="contrasenia" placeholder="Ingresa tu contraseña">
+
+                        <div v-if="v$?.contrasenia?.$error">Ingresa tu contraseña</div>
+
+                        <div v-if="v$?.contrasenia?.minLength && contrasenia.length > 0">  el campo debe contener al menos 2 caracteres </div>
                     </div>
                     
                     <div id="contenedor_boton">
-                        <button type="submit">Inicia Sesion</button>
+                        <button type="submit" @click="validar">Inicia Sesion</button>
                     </div>
                   
                 </form>
@@ -59,9 +69,18 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
+import { useVuelidate } from '@vuelidate/core'
+import { required,minLength} from '@vuelidate/validators';
+
 import axios from 'axios'
 
 export default {
+  components:{
+
+  },
+  setup(){
+    return { v$: useVuelidate() }
+  },
   data() {
     return {
       nombre_usuario: '',
@@ -69,14 +88,32 @@ export default {
     };
   },
   methods: {
+
+    validar() {
+      this.v$.$touch()
+      if (!this.v$.$error) {
+        this.login();
+        console.log('formulario a sido enviado')
+      }else{
+        console.log('formulario con errores')
+      }
+
+    },
+
+
+
+
     ...mapMutations(['establecerUsuarioConectado']),   //Mapea al estado de que si un usuario está conectado ono, por ejemplo cuando en el ACTIONS le hace una peticion al servidor este se pone en TRUE
     async login() {
       try {
-        const respuesta = await axios.post('', { nombre_usuario: this.nombre_usuario, contrasenia: this.contrasenia });
+        const respuesta = await axios.post('', { 
+          nombre_usuario: this.nombre_usuario,
+          contrasenia: this.contrasenia
+          });
 
          if (respuesta.data.authenticated) {
            this.establecerUsuarioConectado(true); 
-           this.$router.push('/panel'); // Residreccionamiento al panel, en caso si es TRUE
+           this.$router.push('/panel');
          } else {
           console.log('autenticacion fallado');
         }
@@ -86,10 +123,21 @@ export default {
       }
     },
   },
+  validations: {
+      nombre_usuario: {
+        required,
+        minLength: minLength(6)
+      },
+      contrasenia: {
+        required,
+        minLength: minLength (9)
+      },
+    },
   computed: {
     ...mapState(['UsuarioConectado']),
   },
-};
+}
+
 </script>
 
 
