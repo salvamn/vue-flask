@@ -16,33 +16,38 @@
       <div id="contenido_derecho">
 
 
-        <form @submit.prevent="validar" action="POST">
+        <form @submit.prevent="crearUsuario" action="POST">
           <div id="contenedor_label_input">
             <!--<label for="email">Nombre Usuario</label>-->
-            <input type="text" v-model="usuario.nombre" id="email" placeholder="Ingresa tu nombre">
+            <input type="text" v-model="usuario.nombre" nombre="nombre" placeholder="Ingresa tu nombre">
 
-            <div v-if="enviado && !$v.nombre.required"> Debe escribir un nombre </div>
+            <div v-if="v$?.usuario.nombre?.$error">Ingresa el nombre porfavor</div>
 
           </div>
 
           <div id="contenedor_label_input">
-            <input type="text" v-model="usuario.correo" id="correo" placeholder="Ingresa tu correo">
+            <input type="text" v-model="usuario.correo" nombre="correo" placeholder="Ingresa tu correo">
+
+            <div v-if="v$?.usuario.correo?.$error">hey, no has ingresado el correo, ingresalo denuevo</div>
           </div>
 
           <div id="contenedor_label_input">
-            <input type="text" v-model="usuario.nombre_usuario" id="nombre_usuario"
-              placeholder="Ingresa tu nombre de usuario">
+            <input type="text" v-model="usuario.nombre_usuario" nombre="nombre_usuario" placeholder="Ingresa tu nombre de usuario">
+
+            <div v-if="v$?.usuario.nombre_usuario?.$error">ingresa el nombre usuario ya que se te olvido</div>
           </div>
 
           <div id="contenedor_label_input">
 
-            <input type="text" v-model="usuario.contrasenia" id="email" placeholder="Ingresa tu contraseña">
+            <input type="text" v-model="usuario.contrasenia" nombre="contrasenia" placeholder="Ingresa tu contraseña">
+
+            <div v-if="v$?.usuario.contrasenia?.$error">Ingresa la contraseña</div>
           </div>
 
 
 
           <div id="contenedor_boton">
-            <button type="submit">Registrarme</button>
+            <button type="submit" @click="validar" >Registrarme</button>
           </div>
 
         </form>
@@ -70,41 +75,46 @@
 <script>
 
 import { mapState } from 'vuex';
-import { required} from '@vuelidate/validators';
+import { useVuelidate } from '@vuelidate/core'
+import { required,minLength,email } from '@vuelidate/validators';
 
 
 
 export default {
   components: {
   },
+  setup(){
+    return { v$: useVuelidate() }
+  },
   data() {
     return {
-      enviado: false,
       usuario: {
         nombre: '',
         correo: '',
         nombre_usuario: '',
         contrasenia: '',
       }
-    };
+    }
   },
   methods: {
+
     validar() {
-      this.enviado = true;
-      if (this.$v.$invalid) {
-        //console.log('hay campos invalidos en el formulario')
-        return;
+      this.v$.$touch()
+      if (!this.v$.$error) {
+        console.log('formulario a sido enviado')
+      }else{
+        console.log('formulario con errores')
       }
 
-      this.enviado = this.crearUsuario();
     },
 
+    
     async crearUsuario() {
       const usuario = {
-        nombre: this.nombre,
-        correo: this.correo,
-        nombre_usuario: this.nombre_usuario,
-        contrasenia: this.contrasenia
+        nombre: this.usuario.nombre,
+        correo: this.usuario.correo,
+        nombre_usuario: this.usuario.nombre_usuario,
+        contrasenia: this.usuario.contrasenia
       };
       try {
         const respuesta = await this.$store.dispatch('crearUsuario', usuario);
@@ -120,6 +130,17 @@ export default {
     usuario: {
       nombre: {
         required,
+      },
+      correo: {
+        required,
+        email,
+      },
+      nombre_usuario: {
+        required,
+      },
+      contrasenia: {
+        required,
+        minLength: minLength(5)
       }
     }
 
