@@ -2,8 +2,6 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 
-from werkzeug.security import check_password_hash # https://tedboy.github.io/flask/generated/werkzeug.check_password_hash.html
-
 from flask_cors import CORS
 
 from flask_bcrypt import Bcrypt # https://flask-bcrypt.readthedocs.io/en/1.0.1/
@@ -114,7 +112,7 @@ def login() -> dict:
                     'is_admin': value['is_admin']
                 }
 
-    return {'incorrecto': False}
+    return {'error': False}
 
 
 
