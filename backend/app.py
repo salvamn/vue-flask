@@ -2,7 +2,11 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 
+from werkzeug.security import check_password_hash # https://tedboy.github.io/flask/generated/werkzeug.check_password_hash.html
+
 from flask_cors import CORS
+
+from flask_bcrypt import Bcrypt # https://flask-bcrypt.readthedocs.io/en/1.0.1/
 
 import firebase_admin
 from firebase_admin import credentials
@@ -17,6 +21,7 @@ import json
 app = Flask(__name__)
 app.config.from_object(obj=Config)
 CORS(app=app, resources={r"/*": {"origins": "*"}})
+bcrypt = Bcrypt(app=app)
 
 
 # Configuramos Firebase
@@ -27,6 +32,9 @@ firebase_admin.initialize_app(credenciales, {
 })
 
 # Obtenermos una referencia de la base de datos
+# Docs de firebase_admin.db: https://firebase.google.com/static/docs/reference/admin/python/firebase_admin.db
+# https://www.freecodecamp.org/news/how-to-get-started-with-firebase-using-python/
+# https://firebase.google.com/docs/database/admin/start?hl=es-419
 referencia = db.reference('/usuario')
 
 
@@ -55,7 +63,7 @@ def crear_usuario() -> dict:
                 
         from models import Usuario
         
-        nuevo_usuario = Usuario(nombre=nombre, correo=correo, nombre_usuario=nombre_usuario, contrasenia=contrasenia)
+        nuevo_usuario = Usuario(nombre=nombre, correo=correo, nombre_usuario=nombre_usuario, contrasenia=bcrypt.generate_password_hash(contrasenia).decode('utf-8'))
                 
         try:            
             referencia.push(nuevo_usuario.serializar_json())
@@ -64,7 +72,7 @@ def crear_usuario() -> dict:
             return jsonify({'respuesta': respuesta})
             
         except Exception as e:
-            print(e)
+            print(f'error: {e}')
             respuesta = str(e)
             return jsonify({'respuesta': respuesta})
     
@@ -89,24 +97,23 @@ def login() -> dict:
         
         nombre_usuario = datos['nombre_usuario']
         contrasenia = datos['contrasenia']
-
-        usuario = referencia.order.by.cnhild('nombre_usuario').equals_to(nombre_usuario).get()
         
-        if usuario:
-            for usuario in usuario.items():
-                usuario_data = usuario
-                break
-            if usuario_data['contrasenia'] == contrasenia:
-                respuesta = {'authenticated': True}
-            else:
-                respuesta= {'authenticated': False, 'message':'credenciales invalidas'}
-        else:
-            respuesta = {'authenticated': False,'message':'credenciales invalidas'} 
+        print(nombre_usuario, contrasenia)
 
-    else:
-        respuesta = {'message': 'peticion invalida'}
+        usuario = referencia.get()
+        
+        for key, value in usuario.items():
 
-    return jsonify(respuesta)
+            if value['nombre_usuario'] == nombre_usuario and bcrypt.check_password_hash(value['contrasenia'], contrasenia):
+                return {
+                    'nombre': value['nombre'],
+                    'nombre_usuario': value['nombre_usuario'],
+                    'fecha_registro': value['fecha_registro'],
+                    'correo': value['correo'],
+                    'is_admin': value['is_admin']
+                }
+
+    return {'incorrecto': False}
 
 
 
