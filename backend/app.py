@@ -34,6 +34,7 @@ firebase_admin.initialize_app(credenciales, {
 # https://www.freecodecamp.org/news/how-to-get-started-with-firebase-using-python/
 # https://firebase.google.com/docs/database/admin/start?hl=es-419
 referencia = db.reference('/usuario')
+referencia_tarea = db.reference('/tarea')
 
 
 #================================================================================================
@@ -131,36 +132,27 @@ def login() -> dict:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/crear_tarea', methods=['POST'])
 def crear_tarea():
     if request.method == 'POST':
         datos = request.get_json()
         
         titulo = datos['titulo']
-        correo = datos['correo']
+        descripcion = datos['descripcion']
+        prioridad = datos['prioridad']
         nombre_usuario = datos['nombre_usuario']
         
         from models import Tarea
         
-        tarea = Tarea()
+        tarea = Tarea(titulo=titulo, descripcion=descripcion, prioridad=prioridad, nombre_usuario=nombre_usuario)
+        
+        try:
+            id = referencia_tarea.push(tarea.serializar_json())
+        except Exception as e:
+            print(e)
+            return {"error": e}
+        
+        return {"id": str(id.key)}
 
 
 
