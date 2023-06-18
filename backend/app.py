@@ -181,6 +181,27 @@ def eliminar_tarea():
 
 
 
+@app.route('/leer_tareas', methods=['POST'])
+def leer_tareas():
+    if request.method == 'POST':
+        datos = request.get_json()
+        
+        nombre_usuario = datos['nombre_usuario']
+        
+        lista_de_tareas = []
+        
+        try:
+            tareas = referencia_tarea.get()
+            
+            for key, value in tareas.items():
+                if value['nombre_usuario'] == nombre_usuario:
+                    lista_de_tareas.append({f'{key}': value})
+            
+        except Exception as e:
+            print(e.args)
+            return {"error": e.args}
+        
+        return lista_de_tareas
 
 
 
