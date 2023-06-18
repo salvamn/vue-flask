@@ -11,6 +11,7 @@ const store = createStore({
   state,
   mutations,
   actions,
+
 });
 
 

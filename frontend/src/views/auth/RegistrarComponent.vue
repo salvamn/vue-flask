@@ -1,65 +1,57 @@
 <template>
+  <section id="contenedor_conjunto">
 
-
-  
-<section id="contenedor_conjunto">
-
-  <div id="contenido">
+    <div id="contenido">
 
 
       <div id="contenido_izquierdo">
-          <h1>Registrate</h1>
+        <h1>Registrate</h1>
       </div>
 
       <div id="contenido_medio">
-          <div id="linea">
-          </div>
+        <div id="linea">
+        </div>
       </div>
 
       <div id="contenido_derecho">
 
 
-          <form @submit.prevent="validar" action="POST">
-              <div id="contenedor_label_input">   
-                  <!--<label for="email">Nombre Usuario</label>-->
-                  <input type="text" v-model="nombre" id="email" placeholder="Ingresa tu nombre">
+        <form @submit.prevent="validar" action="POST">
+          <div id="contenedor_label_input">
+            <!--<label for="email">Nombre Usuario</label>-->
+            <input type="text" v-model="usuario.nombre" id="email" placeholder="Ingresa tu nombre">
 
-                <div v-if="enviado && !$v.nombre.required"> Debe escribir un nombre </div>
-                  
-              </div>
+            <div v-if="enviado && !$v.nombre.required"> Debe escribir un nombre </div>
 
-              <div id="contenedor_label_input">  
-                <input type="text" v-model="correo" id="correo" placeholder="Ingresa tu correo">
-              </div>
+          </div>
 
-              <div id="contenedor_label_input">  
-                <input type="text" v-model="nombre_usuario" id="nombre_usuario" placeholder="Ingresa tu nombre de usuario">
-              </div>
+          <div id="contenedor_label_input">
+            <input type="text" v-model="usuario.correo" id="correo" placeholder="Ingresa tu correo">
+          </div>
 
-              <div id="contenedor_label_input">   
-                 
-                  <input type="text" v-model="contrasenia" id="email" placeholder="Ingresa tu contraseña">
-              </div>
+          <div id="contenedor_label_input">
+            <input type="text" v-model="usuario.nombre_usuario" id="nombre_usuario"
+              placeholder="Ingresa tu nombre de usuario">
+          </div>
 
-            
-              
-              <div id="contenedor_boton">
-                  <button type="submit">Registrarme</button>
-              </div>
-            
-          </form>
+          <div id="contenedor_label_input">
+
+            <input type="text" v-model="usuario.contrasenia" id="email" placeholder="Ingresa tu contraseña">
+          </div>
+
+
+
+          <div id="contenedor_boton">
+            <button type="submit">Registrarme</button>
+          </div>
+
+        </form>
 
       </div>
 
-  </div>
+    </div>
 
-</section>
-
-
-
-
-
-
+  </section>
 </template>
 
 
@@ -78,7 +70,7 @@
 <script>
 
 import { mapState } from 'vuex';
-import { required } from 'vuelidate/lib/validators';
+import { required} from '@vuelidate/validators';
 
 
 
@@ -87,35 +79,33 @@ export default {
   },
   data() {
     return {
-      nombre: '',
-      correo: '',
-      nombre_usuario: '',
-      contrasenia: '',
       enviado: false,
+      usuario: {
+        nombre: '',
+        correo: '',
+        nombre_usuario: '',
+        contrasenia: '',
+      }
     };
   },
   methods: {
-    validar(){
-        this.enviado=true;
-        if (this.$v.$invalid){
-          //console.log('hay campos invalidos en el formulario')
-          return;
-        }
+    validar() {
+      this.enviado = true;
+      if (this.$v.$invalid) {
+        //console.log('hay campos invalidos en el formulario')
+        return;
+      }
 
-        this.enviado = this.crearUsuario();
-      },
+      this.enviado = this.crearUsuario();
+    },
 
     async crearUsuario() {
-
       const usuario = {
         nombre: this.nombre,
         correo: this.correo,
         nombre_usuario: this.nombre_usuario,
         contrasenia: this.contrasenia
       };
-
-     
-
       try {
         const respuesta = await this.$store.dispatch('crearUsuario', usuario);
         console.log(respuesta);
@@ -127,9 +117,12 @@ export default {
     }
   },
   validations: {
-    nombre:{
-      required,
+    usuario: {
+      nombre: {
+        required,
+      }
     }
+
 
   },
   computed: {
@@ -156,5 +149,4 @@ export default {
 
 <style scoped>
 @import url('@/assets/css/formulario.css');
-
 </style>

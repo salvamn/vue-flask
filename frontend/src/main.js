@@ -1,10 +1,9 @@
 import { createApp } from 'vue';
 import App from './App.vue';                            //Importación de todo como router,store,mutations,actions,etc.  
 import router from './router/router.js';
-import Vuelidate from 'vuelidate';
+import Vuelidate from '@vuelidate/core';
 
 import store from './store/index.js' //lo incorporé
-
 
 
 
