@@ -68,7 +68,7 @@
 
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+
 import { useVuelidate } from '@vuelidate/core'
 import { required,minLength} from '@vuelidate/validators';
 
@@ -103,17 +103,20 @@ export default {
 
 
 
-    ...mapMutations(['establecerUsuarioConectado']),   //Mapea al estado de que si un usuario está conectado ono, por ejemplo cuando en el ACTIONS le hace una peticion al servidor este se pone en TRUE
+
     async login() {
       try {
-        const respuesta = await axios.post('', { 
+        const respuesta = await axios.post('http://localhost:5000/login', { 
           nombre_usuario: this.nombre_usuario,
           contrasenia: this.contrasenia
           });
 
-         if (respuesta.data.authenticated) {
-           this.establecerUsuarioConectado(true); 
+
+          console.log(respuesta.data)
+          
+         if (respuesta.data) {
            this.$router.push('/panel');
+           console.log('autenticacion exitoso');
          } else {
           console.log('autenticacion fallado');
         }
@@ -122,6 +125,7 @@ export default {
         console.error(error);
       }
     },
+
   },
   validations: {
       nombre_usuario: {
@@ -130,14 +134,11 @@ export default {
       },
       contrasenia: {
         required,
-        minLength: minLength (9)
+        minLength: minLength(9)
       },
-    },
-  computed: {
-    ...mapState(['UsuarioConectado']),
-  },
-}
 
+}
+}
 </script>
 
 

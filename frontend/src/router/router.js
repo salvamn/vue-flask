@@ -1,4 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';   // Librería de vue router importación
+
+
+
+
+
 import InicioComponent from '@/views/InicioComponent.vue';      // Importación del componente de inicio que está en la sección views llamada InicioComponent.vue
 import registrarComponent from '@/views/auth/RegistrarComponent.vue';
 import LoginComponent from '@/views/auth/LoginComponent.vue'
@@ -21,6 +26,7 @@ const router = createRouter({  /* Acá definimos como enrutador en general dónd
   history: createWebHistory(),
   routes
 });
+
 
 
 
