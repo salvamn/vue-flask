@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';   // Librería de vue router importación
-import InicioComponent from '@/views/InicioComponent.vue';      // Importación del componente de inicio que está en la sección views llamada InicioComponent.vue
+import InicioComponent from '@/views/inicioComponent.vue';      // Importación del componente de inicio que está en la sección views llamada InicioComponent.vue
 import registrarComponent from '@/views/auth/RegistrarComponent.vue';
 import LoginComponent from '@/views/auth/LoginComponent.vue'
 import PanelComponent from '@/views/PanelComponent.vue'
