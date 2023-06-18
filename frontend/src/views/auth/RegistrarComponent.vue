@@ -19,10 +19,13 @@
       <div id="contenido_derecho">
 
 
-          <form @submit.prevent="crearUsuario" action="POST">
+          <form @submit.prevent="validar" action="POST">
               <div id="contenedor_label_input">   
                   <!--<label for="email">Nombre Usuario</label>-->
                   <input type="text" v-model="nombre" id="email" placeholder="Ingresa tu nombre">
+
+                <div v-if="enviado && !$v.nombre.required"> Debe escribir un nombre </div>
+                  
               </div>
 
               <div id="contenedor_label_input">  
@@ -75,7 +78,8 @@
 <script>
 
 import { mapState } from 'vuex';
-import { required, minLenght } from 'vuelidate/lib/validators/'
+import { required } from 'vuelidate/lib/validators';
+
 
 
 export default {
@@ -86,33 +90,46 @@ export default {
       nombre: '',
       correo: '',
       nombre_usuario: '',
-      contrasenia: ''
+      contrasenia: '',
+      enviado: false,
     };
   },
   methods: {
+    validar(){
+        this.enviado=true;
+        if (this.$v.$invalid){
+          //console.log('hay campos invalidos en el formulario')
+          return;
+        }
+
+        this.enviado = this.crearUsuario();
+      },
+
     async crearUsuario() {
+
       const usuario = {
         nombre: this.nombre,
         correo: this.correo,
         nombre_usuario: this.nombre_usuario,
         contrasenia: this.contrasenia
       };
+
+     
+
       try {
         const respuesta = await this.$store.dispatch('crearUsuario', usuario);
         console.log(respuesta);
+
         //this.$router.push('/panel');
       } catch (error) {
         console.error(error);
       }
-    },
-
-    validations: {
-      nombre: {
-        required,
-        minLenght
-      }
     }
-
+  },
+  validations: {
+    nombre:{
+      required,
+    }
 
   },
   computed: {
