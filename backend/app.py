@@ -58,26 +58,41 @@ def crear_usuario() -> dict:
         correo = datos['correo']
         nombre_usuario = datos['nombre_usuario']
         contrasenia = datos['contrasenia']
-                
+        
+        from validaciones import validar_longitud_datos_registro
+        from validaciones import validar_correo
+        from validaciones import validar_correo_en_db
+        from validaciones import validar_nombre_usuario_en_db
+        
+        if validar_longitud_datos_registro(nombre, correo, nombre_usuario, contrasenia) == False:
+            return {"error": "Hay campos vacios"}
+        
+        if validar_correo(correo) == False:
+            return {"error": "No es un correo valido"}
+        
+        if validar_nombre_usuario_en_db(referencia, nombre_usuario) == False:
+            return {"error": "El nombre de usuario ya existe"}
+        
+        if validar_correo_en_db(referencia, correo) == False:
+            return {"error": "El correo ya existe"}
+        
         from models import Usuario
         
         nuevo_usuario = Usuario(nombre=nombre, correo=correo, nombre_usuario=nombre_usuario, contrasenia=bcrypt.generate_password_hash(contrasenia).decode('utf-8'))
                 
         try:            
             referencia.push(nuevo_usuario.serializar_json())
-            respuesta = f'Nuevo usuario creado: {nombre}'
+            respuesta = f"Nuevo usuario creado: {nombre}"
             
-            return jsonify({'respuesta': respuesta})
+            return jsonify({"respuesta": respuesta})
             
         except Exception as e:
             print(f'error: {e}')
             respuesta = str(e)
-            return jsonify({'respuesta': respuesta})
-    
-        
+            return jsonify({"respuesta": respuesta})
     
     respuesta = 'Peticion invalida.'
-    return jsonify({'respuesta': respuesta})
+    return jsonify({"respuesta": respuesta})
     
 
 
