@@ -28,7 +28,7 @@ def validar_nombre_usuario_en_db():
 
 
 
-def validar_corre_en_db():
+def validar_correo_en_db():
     pass
 
 

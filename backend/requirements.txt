@@ -1,3 +1,4 @@
+bcrypt==4.0.1
 bitstring==3.1.9
 CacheControl==0.13.1
 cachetools==5.3.1
@@ -13,6 +14,7 @@ esptool==4.3
 filelock==3.4.2
 firebase-admin==6.1.0
 Flask==2.2.2
+Flask-Bcrypt==1.0.1
 Flask-Cors==3.0.10
 Flask-MySQLdb==1.0.1
 google-api-core==2.11.0
@@ -37,6 +39,7 @@ mysqlclient==2.1.1
 numpy==1.23.4
 opencv-python==4.6.0.66
 packaging==21.3
+passlib==1.7.4
 Pillow==9.2.0
 platformdirs==2.4.1
 proto-plus==1.22.2
