@@ -34,6 +34,7 @@ firebase_admin.initialize_app(credenciales, {
 # https://www.freecodecamp.org/news/how-to-get-started-with-firebase-using-python/
 # https://firebase.google.com/docs/database/admin/start?hl=es-419
 referencia = db.reference('/usuario')
+referencia_tarea = db.reference('/tarea')
 
 
 #================================================================================================
@@ -131,42 +132,76 @@ def login() -> dict:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/crear_tarea', methods=['POST'])
 def crear_tarea():
     if request.method == 'POST':
         datos = request.get_json()
         
         titulo = datos['titulo']
-        correo = datos['correo']
+        descripcion = datos['descripcion']
+        prioridad = datos['prioridad']
         nombre_usuario = datos['nombre_usuario']
         
         from models import Tarea
         
-        tarea = Tarea()
+        tarea = Tarea(titulo=titulo, descripcion=descripcion, prioridad=prioridad, nombre_usuario=nombre_usuario)
+        
+        try:
+            id = referencia_tarea.push(tarea.serializar_json())
+        except Exception as e:
+            print(e)
+            return {"error": e}
+        
+        return {"id": str(id.key)}
 
 
 
+@app.route('/eliminar_tarea', methods=['POST'])
+def eliminar_tarea():
+    if request.method == 'POST':
+        datos = request.get_json()
+        
+        id = datos['id']
+                
+        try:
+            respuesta = referencia_tarea.get()
+            for key, value in respuesta.items():
+                if key == id:
+                    respuesta = referencia_tarea.child(id).set({})
+                    
+                    if respuesta == None:
+                        respuesta = 'tarea eliminada con exito.'
+                    break
+            
+        except Exception as e:
+            print(e)
+            return {"error": e.args}
+        
+        return {"tarea": respuesta}
 
 
 
+@app.route('/leer_tareas', methods=['POST'])
+def leer_tareas():
+    if request.method == 'POST':
+        datos = request.get_json()
+        
+        nombre_usuario = datos['nombre_usuario']
+        
+        lista_de_tareas = []
+        
+        try:
+            tareas = referencia_tarea.get()
+            
+            for key, value in tareas.items():
+                if value['nombre_usuario'] == nombre_usuario:
+                    lista_de_tareas.append({f'{key}': value})
+            
+        except Exception as e:
+            print(e.args)
+            return {"error": e.args}
+        
+        return lista_de_tareas
 
 
 
