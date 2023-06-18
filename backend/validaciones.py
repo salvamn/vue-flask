@@ -1,3 +1,6 @@
+import re
+
+
 # Funciones que permiten realizar validaciones
 
 def validar_longitud_datos_registro(nombre, correo, nombre_usuario, contrasenia):
@@ -16,19 +19,25 @@ def validar_longitud_datos_registro(nombre, correo, nombre_usuario, contrasenia)
     
     return True, {'mensaje': 'No hay errores de longitud'}
 
+def validar_correo(correo):
+    patron = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return bool(re.match(patron, correo) is not None)
 
 
-def validar_correo():
-    pass
+def validar_nombre_usuario_en_db(referencia, nombre_usuario):
+    usuarios = referencia.get()
+    
+    for key, value in usuarios.items():
+        if value['nombre_usuario'] == nombre_usuario:
+            return False
+        
+    return True
 
+def validar_correo_en_db(referencia, correo):
+    usuarios = referencia.get()
 
-
-def validar_nombre_usuario_en_db():
-    pass
-
-
-
-def validar_correo_en_db():
-    pass
-
-
+    for key, value in usuarios.items():
+        if value['correo'] == correo:
+            return False
+        
+    return True
