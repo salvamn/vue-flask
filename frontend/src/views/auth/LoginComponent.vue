@@ -71,6 +71,8 @@
 
 import { useVuelidate } from '@vuelidate/core'
 import { required,minLength} from '@vuelidate/validators';
+import { useStore } from 'vuex';
+
 
 import axios from 'axios'
 
@@ -79,7 +81,9 @@ export default {
 
   },
   setup(){
-    return { v$: useVuelidate() }
+
+    return { v$: useVuelidate(), store: useStore() }
+    
   },
   data() {
     return {
@@ -113,10 +117,14 @@ export default {
 
 
           console.log(respuesta.data)
-          
+
          if (respuesta.data) {
+
+           this.$store.commit('establecerAutenticado', true); 
            this.$router.push('/panel');
            console.log('autenticacion exitoso');
+
+
          } else {
           console.log('autenticacion fallado');
         }
