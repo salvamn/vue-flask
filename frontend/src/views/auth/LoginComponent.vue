@@ -51,6 +51,12 @@
 
 
 
+
+
+
+
+
+
 <script>
 import { mapState, mapMutations } from 'vuex';
 import axios from 'axios'
@@ -63,14 +69,14 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['establecerUsuarioConectado']), 
+    ...mapMutations(['establecerUsuarioConectado']),   //Mapea al estado de que si un usuario está conectado ono, por ejemplo cuando en el ACTIONS le hace una peticion al servidor este se pone en TRUE
     async login() {
       try {
         const respuesta = await axios.post('', { nombre_usuario: this.nombre_usuario, contrasenia: this.contrasenia });
 
          if (respuesta.data.authenticated) {
            this.establecerUsuarioConectado(true); 
-           this.$router.push('/panel');
+           this.$router.push('/panel'); // Residreccionamiento al panel, en caso si es TRUE
          } else {
           console.log('autenticacion fallado');
         }
@@ -86,13 +92,18 @@ export default {
 };
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
 <style scoped>
 @import url('@/assets/css/formulario.css');
 </style>
 
-
-
-
-<style scoped>
-@import url('@/assets/css/formulario.css');
-</style>

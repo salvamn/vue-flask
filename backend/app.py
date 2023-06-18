@@ -100,6 +100,7 @@ def login() -> dict:
         
         print(nombre_usuario, contrasenia)
 
+
         usuario = referencia.get()
         
         for key, value in usuario.items():
@@ -114,6 +115,9 @@ def login() -> dict:
                 }
 
     return {'incorrecto': False}
+
+
+
 
 
 
