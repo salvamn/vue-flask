@@ -1,5 +1,5 @@
-from werkzeug.security import check_password_hash
-from werkzeug.security import generate_password_hash
+# from werkzeug.security import check_password_hash
+# from werkzeug.security import generate_password_hash
 
 from datetime import date
 
@@ -21,7 +21,7 @@ class Usuario:
         self.nombre = nombre
         self.correo = correo
         self.nombre_usuario = nombre_usuario
-        self.contrasenia = generate_password_hash(password=contrasenia)
+        self.contrasenia = contrasenia
         self.fecha_registro = date.today().strftime("%d/%m/%Y")
         self.is_admin = is_admin
         
@@ -29,7 +29,7 @@ class Usuario:
         return self.nombre_usuario
     
     def serializar_json(self):
-        return {'id': self.id, 'nombre': self.nombre, 'correo': self.correo, 'nombre_usuario': self.nombre_usuario, 'contrasenia': self.contrasenia, 'fecha_registro': self.fecha_registro, 'is_admin': str(self.is_admin)}
+        return {'id': self.id, 'nombre': self.nombre, 'correo': self.correo, 'nombre_usuario': self.nombre_usuario, 'contrasenia': str(self.contrasenia), 'fecha_registro': self.fecha_registro, 'is_admin': str(self.is_admin)}
         
         
 class Tarea:
