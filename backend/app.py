@@ -156,6 +156,28 @@ def crear_tarea():
 
 
 
+@app.route('/eliminar_tarea', methods=['POST'])
+def eliminar_tarea():
+    if request.method == 'POST':
+        datos = request.get_json()
+        
+        id = datos['id']
+                
+        try:
+            respuesta = referencia_tarea.get()
+            for key, value in respuesta.items():
+                if key == id:
+                    respuesta = referencia_tarea.child(id).set({})
+                    
+                    if respuesta == None:
+                        respuesta = 'tarea eliminada con exito.'
+                    break
+            
+        except Exception as e:
+            print(e)
+            return {"error": e.args}
+        
+        return {"tarea": respuesta}
 
 
 
