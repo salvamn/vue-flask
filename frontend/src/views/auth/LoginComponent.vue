@@ -105,9 +105,6 @@ export default {
     },
 
 
-
-
-
     async login() {
       try {
         const respuesta = await axios.post('http://localhost:5000/login', { 
@@ -119,10 +116,10 @@ export default {
           console.log(respuesta.data)
 
          if (respuesta.data) {
-
-           this.$store.commit('establecerAutenticado', true); 
-           this.$router.push('/panel');
-           console.log('autenticacion exitoso');
+           
+          this.$store.commit('establecerAutenticado', true);
+          this.$router.push('/panel');
+          console.log('autenticacion exitoso');
 
 
          } else {
@@ -133,8 +130,9 @@ export default {
         console.error(error);
       }
     },
-
+    
   },
+
   validations: {
       nombre_usuario: {
         required,
