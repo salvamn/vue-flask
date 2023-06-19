@@ -3,17 +3,20 @@
 
     <div id="contenedor_todo">
 
-
-        <crearTarea/>
-
-        <div>
-
-
-
+        <div id="contenido_top">
+            <crearTarea/>
         </div>
+        
 
 
 
+        <div id="contenido_bottom">
+
+            <div id="contenedor_recorrido_for">
+                algo
+            </div>
+           
+        </div>
 
 
     </div>
@@ -54,13 +57,28 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.123);
 }
 
-
-#contenedor_todo>div {
+#contenido_top{
     width: 80%;
-    height: 80%;
-    background: rgba(255, 255, 255, 0.096);
-    padding: 20px;
+    height: auto;
+    /*background: red;*/
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
 }
+
+#contenido_bottom{
+    height: 40%;
+    width: 80%;
+    background: rgba(7, 7, 7, 0.548);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 </style>
