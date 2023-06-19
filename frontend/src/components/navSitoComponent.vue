@@ -1,5 +1,4 @@
 <template>
-
     <nav id="navSito">
 
 
@@ -13,27 +12,28 @@
 
         <div id="contenedor_rutas" v-if="estaAutenticado">
 
-            <router-link id="rutas" to="/Inicio" title="inicio">
-                <img src="@/assets/img/icons/inicio.png" alt="">
-            </router-link>
-            <a href="">Usuario</a>
-            <router-link to="/panel">Panel</router-link>
-            <a href="" @click="cerrarSesion">Cerrar sesión</a>
+            <div id="submenu">
+                <a href="">Usuario</a>
+                <div id="submenu-contenido">
+                    <router-link style="text-decoration: none;" to="/panel">Panel</router-link>
+                    <router-link to="/" @click.prevent="cerrarSesion">Cerrar sesión</router-link>
+                </div>
+            </div>
+
 
         </div>
 
-      
+
 
         <div id="contenedor_rutas" v-else>
 
             <router-link id="rutas" to="/login" title="iniciar sesion">Iniciar Sesión</router-link>
             <router-link id="rutas" to="/registrar" title="registrarse">¿No tienes una cuenta?</router-link>
+
         </div>
 
 
     </nav>
-
-
 </template>
 
 
@@ -45,12 +45,12 @@ import { mapState } from 'vuex';
 export default {
     data() {
         return {
-           
+
         }
     },
     computed: {
         ...mapState(['estaAutenticado'])
-        
+
     },
     methods: {
         cerrarSesion() {
@@ -110,5 +110,41 @@ export default {
 
    #rutas img {
        width: 2em;
+   }
+
+
+   #submenu {
+       position: relative;
+       display: block;
+   }
+
+   #submenu:hover #submenu-contenido {
+       display: block;
+       border-radius: 5%;
+       z-index: 1;
+   }
+
+   #submenu-contenido {
+       display: none;
+       position: absolute;
+       z-index: 1;
+       background-color: #111010;
+       min-width: 160px;
+       z-index: 1;
+   }
+
+   #submenu-contenido a {
+       color: rgb(248, 248, 248);
+       display: block;
+       padding: 10px;
+       text-decoration: none;
+       font-size: 14px;
+       z-index: 1;
+   }
+
+   #submenu-contenido a:hover {
+       background: rgb(9, 143, 98);
+       border-radius: 5%;
+       z-index: 1;
    }
 </style>
