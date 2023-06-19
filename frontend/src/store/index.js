@@ -7,6 +7,7 @@ const store = createStore({
   state: {
     estaAutenticado: false,
     usuarios: [],
+    tareas: [],
   },
 
 
@@ -15,6 +16,9 @@ const store = createStore({
     agregarUsuario(state, usuario) {
       //console.log('usuario agregado desde index.js')
       state.usuarios.push(usuario);
+    },
+    agregarTarea(state, tarea){
+      state.tareas.push(tarea)
     },
     establecerAutenticado(state, estaAutenticado) {
       console.log('Estado de autenticación actualizado:', estaAutenticado);
@@ -35,7 +39,26 @@ const store = createStore({
           console.error('Error al crear el usuario:', error);
           throw error;
         }
+      },
+    
+     async crearTarea({ commit }, tarea){
+      try{
+        const response = await axios.post('http://localhost:5000/crear_tarea', tarea);
+        commit('agregarTarea', response.data.respuesta);
+        console.log(response.data)
+        return response.data.respuesta;
+
+      } catch(error){
+        console.error('error al crear la tarea:', error)
+        throw error;
+        
       }
+
+     } 
+   
+
+
+
   },
 
 
