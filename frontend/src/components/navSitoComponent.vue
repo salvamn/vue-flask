@@ -1,13 +1,12 @@
 <template>
+
+
+
     <nav id="navSito">
 
 
-
-
         <div id="contenedor_logo">
-
             <img src="@/assets/img/icons/codigo.png" alt="">
-
         </div>
 
         <div id="contenedor_rutas" v-if="estaAutenticado">
@@ -27,6 +26,7 @@
 
         <div id="contenedor_rutas" v-else>
 
+            <router-link id="rutas" to="/Inicio" title="iniciar sesion">Inicio</router-link>
             <router-link id="rutas" to="/login" title="iniciar sesion">Iniciar Sesión</router-link>
             <router-link id="rutas" to="/registrar" title="registrarse">¿No tienes una cuenta?</router-link>
 
@@ -34,6 +34,11 @@
 
 
     </nav>
+
+
+
+
+
 </template>
 
 
@@ -45,12 +50,11 @@ import { mapState } from 'vuex';
 export default {
     data() {
         return {
-
+            usuarioAutenticado: null
         }
     },
     computed: {
-        ...mapState(['estaAutenticado'])
-
+        ...mapState(['estaAutenticado']),
     },
     methods: {
         cerrarSesion() {
