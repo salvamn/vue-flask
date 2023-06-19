@@ -55,7 +55,7 @@ class Tarea:
         return self.titulo
     
     def serializar_json(self):
-        return {'id': self.id, 'titulo': self.titulo, 'descripcion': self.descripcion, 'estado': self.estado, 'prioridad': self.prioridad, 'fecha_creacion_todo': self.fecha_creacion_todo, 'nombre_usuario': self.nombre_usuario}
+        return {"id": self.id, "titulo": self.titulo, "descripcion": self.descripcion, "estado": self.estado, "prioridad": self.prioridad, "fecha_creacion_todo": self.fecha_creacion_todo, "nombre_usuario": self.nombre_usuario}
         
     
     
