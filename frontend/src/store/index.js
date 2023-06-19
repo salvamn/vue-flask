@@ -13,9 +13,11 @@ const store = createStore({
 
   mutations: {
     agregarUsuario(state, usuario) {
+      //console.log('usuario agregado desde index.js')
       state.usuarios.push(usuario);
     },
     establecerAutenticado(state, estaAutenticado) {
+      console.log('Estado de autenticación actualizado:', estaAutenticado);
       state.estaAutenticado = estaAutenticado;
     },
   },
