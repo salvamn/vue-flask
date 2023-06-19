@@ -152,7 +152,10 @@ def crear_tarea():
             print(e)
             return {"error": e}
         
-        return {"id": str(id.key)}
+        tarea.id = id.key
+        objeto_serializado = tarea.serializar_json() 
+
+        return {"tarea": objeto_serializado}
 
 
 
