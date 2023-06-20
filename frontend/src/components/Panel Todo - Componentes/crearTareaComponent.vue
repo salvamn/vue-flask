@@ -20,7 +20,7 @@
             </div>
        
             <div id="contenedor_boton">
-                <button id="boton_crear_tarea" @click="crearTarea" >Crear Tarea</button>
+                <button id="boton_crear_tarea" @click.prevent="crearTarea" >Crear Tarea</button>
             </div>
 
   
@@ -29,12 +29,6 @@
     </div>
   
  
-
-
-
-
-
-
 
 
 </template>
@@ -61,7 +55,7 @@ export default{
                 titulo: this.titulo,
                 descripcion: this.descripcion,
                 prioridad: this.prioridad,
-                nombre_usuario: this.nombre_usuario
+                nombre_usuario: this.$store.state.nombreUsuario,  // indentificar el nombre_usuario y agregarlo al campo de nombre de usuario
             };
             try{
                 const respuesta = await this.$store.dispatch('crearTarea', tarea);
@@ -69,7 +63,8 @@ export default{
             } catch(error){
                 console.error(error);
             }
-        }
+        },
+        
     }
 
 

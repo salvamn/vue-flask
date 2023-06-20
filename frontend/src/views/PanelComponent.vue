@@ -13,7 +13,7 @@
         <div id="contenido_bottom">
 
             <div id="contenedor_recorrido_for">
-                algo
+              
             </div>
            
         </div>
@@ -37,7 +37,8 @@ import crearTarea from '../components/PeticionesHTTP/crearTareaComponent.vue'
 
 export default {
   components: {
-    crearTarea
+    crearTarea,
+   
     }
 }
 

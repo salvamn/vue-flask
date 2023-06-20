@@ -12,7 +12,7 @@
         <div id="contenedor_rutas" v-if="estaAutenticado">
 
             <div id="submenu">
-                <a href="">Usuario</a>
+                <a href="">{{nombreUsuario}}</a>
                 <div id="submenu-contenido">
                     <router-link style="text-decoration: none;" to="/panel">Panel</router-link>
                     <router-link to="/" @click.prevent="cerrarSesion">Cerrar sesión</router-link>
@@ -54,11 +54,12 @@ export default {
         }
     },
     computed: {
-        ...mapState(['estaAutenticado']),
+        ...mapState(['estaAutenticado', 'nombreUsuario']),
     },
     methods: {
         cerrarSesion() {
             this.$store.commit('establecerAutenticado', false);
+            this.$store.commit('establecerNombreUsuario', '');
             this.$router.push('/login')
 
         }

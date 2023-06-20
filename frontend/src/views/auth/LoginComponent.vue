@@ -74,6 +74,7 @@ import { required,minLength} from '@vuelidate/validators';
 import { useStore } from 'vuex';
 
 
+
 import axios from 'axios'
 
 export default {
@@ -116,7 +117,8 @@ export default {
           console.log(respuesta.data)
 
          if (respuesta.data) {
-           
+
+          this.$store.commit('establecerNombreUsuario', respuesta.data.nombre_usuario);//
           this.$store.commit('establecerAutenticado', true);
           this.$router.push('/panel');
           console.log('autenticacion exitoso');
@@ -143,7 +145,9 @@ export default {
         minLength: minLength(9)
       },
 
-}
+},
+
+
 }
 </script>
 
