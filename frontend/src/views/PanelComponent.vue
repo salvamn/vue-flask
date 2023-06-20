@@ -30,7 +30,7 @@
 
 
 <script>
-import crearTarea from '../components/PeticionesHTTP/crearTareaComponent.vue'
+import crearTarea from '../components/Panel Todo - Componentes/crearTareaComponent.vue'
 
 
 
