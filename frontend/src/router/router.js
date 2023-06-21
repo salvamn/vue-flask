@@ -18,15 +18,12 @@ const routes = [   //Se crea una constante de rutas o routes,  donde adentro de 
 ];
 
 
-
-
-
-
-
 const router = createRouter({  /* Acá definimos como enrutador en general dónde llama a routes o rutas de arriba,  y lo ejecuta dentro de la librería */
   history: createWebHistory(),
   routes
 });
+
+
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((ruta) => ruta.meta.requiresAuth)) {
