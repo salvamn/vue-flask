@@ -13,11 +13,8 @@
 html,
 body {
     width: 100% !important;
-    height: 100% !important;
-    background-image: url('@/assets/img/portadas/cool.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    /* height: 100% !important; */
+    background-color: #1A1A1A;
 }
 
 

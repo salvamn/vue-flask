@@ -79,13 +79,15 @@ export default {
 <style scoped>   /* scoped quiere decir que mapea los estilos que le pondremos en este componente */
    #navSito {
        width: 100%;
-       background-color: rgb(5, 5, 5);
+       background-color: #1A1A1A;
        display: flex;
        justify-content: space-around;
        align-items: center;
        padding: 5px;
        position: fixed;
        top: 0;
+       border-bottom: 1px solid #232323;
+
    }
 
    #navSito #contenedor_logo {
