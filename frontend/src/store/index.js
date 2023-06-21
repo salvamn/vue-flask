@@ -10,6 +10,7 @@ const store = createStore({
         nombreUsuario: '',
         usuarios: [],
         tareas: [],
+        verTarea:[],
       },
 
 
@@ -20,7 +21,11 @@ const store = createStore({
       state.usuarios.push(usuario);
     },
     agregarTarea(state, tarea){
-      //console.log('agregando tarea:', tarea);
+      console.log('agregando tarea:', tarea);
+      state.tareas.push(tarea)
+    },
+    verTarea(state, tarea){
+      console.log('función verTarea:', tarea);
       state.tareas.push(tarea)
     },
     establecerAutenticado(state, estaAutenticado) {
@@ -30,6 +35,7 @@ const store = createStore({
     establecerNombreUsuario(state, nombreUsuario) {
       state.nombreUsuario = nombreUsuario;     
     },
+
   },
 
 
@@ -60,13 +66,20 @@ const store = createStore({
             throw error;
             
           }
-
       },
       /*______________________________________*/
-
-
-      }   
-
+        async listarTarea({ commit }, nombreUsuario){
+          try{
+            const response = await axios.post('http://localhost:5000/listar_tareas', nombreUsuario);
+            commit('verTarea', response.data.respuesta);
+            console.log('funcion asincrona listarTarea', response.data)
+            return response.data.respuesta;
+          } catch(error){
+            console.error('error al leer la tarea:',error)
+            throw error;
+          }
+      },
+    }   
 });
 
 

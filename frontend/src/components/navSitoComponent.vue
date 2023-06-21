@@ -60,7 +60,7 @@ export default {
         cerrarSesion() {
             this.$store.commit('establecerAutenticado', false);
             this.$store.commit('establecerNombreUsuario', '');
-            this.$router.push('/login')
+            this.$router.push('/login');
 
         }
     }

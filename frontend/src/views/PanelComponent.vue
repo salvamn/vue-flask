@@ -13,7 +13,7 @@
         <div id="contenido_bottom">
 
             <div id="contenedor_recorrido_for">
-              
+              <listaTarea />
             </div>
            
         </div>
@@ -31,14 +31,14 @@
 
 <script>
 import crearTarea from '../components/Panel Todo - Componentes/crearTareaComponent.vue'
-
+import listaTarea from '../components/Panel Todo - Componentes/listaTareaComponent.vue'
 
 
 
 export default {
   components: {
     crearTarea,
-   
+    listaTarea,
     }
 }
 
