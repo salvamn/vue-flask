@@ -24,7 +24,7 @@
 
                     <div id="contenedor_label_input">   
                 
-                        <input type="text" v-model="nombre_usuario" nombre="nombre_usuario" placeholder="Ingresa tu nombre de usuario">
+                        <input type="text" v-model="nombre_usuario" nombre="nombre_usuario" placeholder="Ingresa tu nombre de usuario" required>
   
                         <div v-if="v$?.nombre_usuario?.$error && nombre_usuario.length === 0">Ingresa tu nombre de usuario</div>
  
@@ -34,7 +34,7 @@
                     
                     <div id="contenedor_label_input">   
             
-                        <input type="text" v-model="contrasenia" nombre="contrasenia" placeholder="Ingresa tu contraseña">
+                        <input type="password" v-model="contrasenia" nombre="contrasenia" placeholder="Ingresa tu contraseña" required>
 
                         <div v-if="v$?.contrasenia?.$error">Ingresa tu contraseña</div>
 

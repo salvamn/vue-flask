@@ -1,21 +1,18 @@
 <template>
 
 
+
     <div id="contenedor_todo">
 
-        <div id="contenido_top">
-            <crearTarea/>
+        <div id="contenedor_top_panel">
+            <crearTarea @tarea-creada="agregarTarea"/>
         </div>
-        
 
+  
+   
 
-
-        <div id="contenido_bottom">
-
-            <div id="contenedor_recorrido_for">
-              <listaTarea />
-            </div>
-           
+        <div id="contenedor_bottom_panel">
+            <listarTarea :tareas="tareas" @tarea-eliminada="eliminarTarea"/>
         </div>
 
 
@@ -24,32 +21,54 @@
 
 
 
-
-</template>
-
-
-
-<script>
-import crearTarea from '../components/Panel Todo - Componentes/crearTareaComponent.vue'
-import listaTarea from '../components/Panel Todo - Componentes/listaTareaComponent.vue'
-
-
-
-export default {
-  components: {
-    crearTarea,
-    listaTarea,
-    }
-}
+  </template>
+  
 
 
 
 
 
-</script>
+  <script>
 
 
+  import crearTarea from '@/components/Peticiones HTTP/CrearTareasComponent.vue';
+  import listarTarea from '@/components/Peticiones HTTP/ListarTareasComponent.vue';
+  import axios from 'axios';
+  
+  export default {
+    components: {
+      crearTarea,
+      listarTarea,
+    },
+    data() {
+      return {
+        tareas: [],
+      };
+    },
+    mounted() {
+      this.leerTareas();
+    },
+    methods: {
+       agregarTarea(tarea) {
+        this.tareas.push(tarea);
+      },
+       eliminarTarea(id) {
+        this.tareas = this.tareas.filter((tarea) => tarea.id !== id);
+      },
+      async leerTareas() {
+        try {
+          const response = await axios.post('http://localhost:5000/leer_tareas', { nombre_usuario: 'nombre_de_usuario' });
+          this.tareas = response.data;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+    },
+  };
+  </script>
 
+  
+  
 
 <style scoped>
 #contenedor_todo {
@@ -62,23 +81,22 @@ export default {
     background: rgba(0, 0, 0, 0.123);
 }
 
-#contenido_top{
-    width: 80%;
-    height: auto;
-    /*background: red;*/
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    
-}
-
-#contenido_bottom{
-    height: 40%;
-    width: 80%;
-    background: rgba(7, 7, 7, 0.548);
+#contenedor_top_panel{
+    width: 100%;
+    height: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 20em;
+}
+
+
+#contenedor_bottom_panel{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 

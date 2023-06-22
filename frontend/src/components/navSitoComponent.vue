@@ -5,14 +5,14 @@
     <nav id="navSito">
 
 
-        <div id="contenedor_logo">
-            <img src="@/assets/img/icons/codigo.png" alt="">
-        </div>
+        <div id="contenedor_autenticado" v-if="estaAutenticado">
 
-        <div id="contenedor_rutas" v-if="estaAutenticado">
+            <div id="contenedor_logo_autenticado">
+                <router-link style="text-decoration: none;" to="/panel">Mis paneles</router-link>
+            </div>
 
             <div id="submenu">
-                <a href="">{{nombreUsuario}}</a>
+                <strong>{{ nombreUsuario }}</strong>
                 <div id="submenu-contenido">
                     <router-link style="text-decoration: none;" to="/panel">Panel</router-link>
                     <router-link to="/" @click.prevent="cerrarSesion">Cerrar sesión</router-link>
@@ -24,18 +24,23 @@
 
 
 
-        <div id="contenedor_rutas" v-else>
+        <div id="contenedor_noautenticado" v-else>
 
-            <router-link id="rutas" to="/Inicio" title="iniciar sesion">Inicio</router-link>
-            <router-link id="rutas" to="/login" title="iniciar sesion">Iniciar Sesión</router-link>
-            <router-link id="rutas" to="/registrar" title="registrarse">¿No tienes una cuenta?</router-link>
+            <div id="contenedor_logo">
+                <img src="@/assets/img/icons/codigo.png" alt="">
+            </div>
+
+            <div id="contenedor_rutas">
+                <router-link id="rutas" to="/Inicio" title="iniciar sesion">Inicio</router-link>
+                <router-link id="rutas" to="/login" title="iniciar sesion">Iniciar Sesión</router-link>
+                <router-link id="rutas" to="/registrar" title="registrarse">¿No tienes una cuenta?</router-link>
+            </div>
+
 
         </div>
 
 
     </nav>
-
-
 
 
 
@@ -57,6 +62,7 @@ export default {
         ...mapState(['estaAutenticado', 'nombreUsuario']),
     },
     methods: {
+
         cerrarSesion() {
             this.$store.commit('establecerAutenticado', false);
             this.$store.commit('establecerNombreUsuario', '');
@@ -77,6 +83,7 @@ export default {
 
 
 <style scoped>   /* scoped quiere decir que mapea los estilos que le pondremos en este componente */
+
    #navSito {
        width: 100%;
        background-color: rgb(5, 5, 5);
@@ -104,6 +111,26 @@ export default {
 
    }
 
+   #contenedor_autenticado {
+       width: 100%;
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+       padding: 10px;
+   }
+
+
+   #contenedor_noautenticado {
+       text-decoration: none;
+       color: white;
+       font-size: 17px;
+       display: flex;
+       justify-content: space-evenly;
+       align-items: center;
+       width: 100%;
+   }
+
+
    #contenedor_rutas #rutas {
        text-decoration: none;
        color: white;
@@ -125,7 +152,6 @@ export default {
 
    #submenu:hover #submenu-contenido {
        display: block;
-       border-radius: 5%;
        z-index: 1;
    }
 
@@ -149,7 +175,6 @@ export default {
 
    #submenu-contenido a:hover {
        background: rgb(9, 143, 98);
-       border-radius: 5%;
        z-index: 1;
    }
 </style>

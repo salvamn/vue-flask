@@ -19,27 +19,27 @@
         <form @submit.prevent="crearUsuario" action="POST">
           <div id="contenedor_label_input">
             <!--<label for="email">Nombre Usuario</label>-->
-            <input type="text" v-model="usuario.nombre" nombre="nombre" placeholder="Ingresa tu nombre">
+            <input type="text" v-model="usuario.nombre" nombre="nombre" placeholder="Ingresa tu nombre" required>
 
             <div v-if="v$?.usuario.nombre?.$error">Ingresa el nombre porfavor</div>
 
           </div>
 
           <div id="contenedor_label_input">
-            <input type="text" v-model="usuario.correo" nombre="correo" placeholder="Ingresa tu correo">
+            <input type="text" v-model="usuario.correo" nombre="correo" placeholder="Ingresa tu correo" required>
 
             <div v-if="v$?.usuario.correo?.$error">hey, no has ingresado el correo, ingresalo denuevo</div>
           </div>
 
           <div id="contenedor_label_input">
-            <input type="text" v-model="usuario.nombre_usuario" nombre="nombre_usuario" placeholder="Ingresa tu nombre de usuario">
+            <input type="text" v-model="usuario.nombre_usuario" nombre="nombre_usuario" placeholder="Ingresa tu nombre de usuario" required>
 
             <div v-if="v$?.usuario.nombre_usuario?.$error">ingresa el nombre usuario ya que se te olvido</div>
           </div>
 
           <div id="contenedor_label_input">
 
-            <input type="text" v-model="usuario.contrasenia" nombre="contrasenia" placeholder="Ingresa tu contraseña">
+            <input type="text" v-model="usuario.contrasenia" nombre="contrasenia" placeholder="Ingresa tu contraseña" required>
 
             <div v-if="v$?.usuario.contrasenia?.$error">Ingresa la contraseña</div>
           </div>
