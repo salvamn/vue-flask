@@ -40,6 +40,9 @@
       eliminarTarea,
     },
     methods: {
+
+
+
       async eliminarTarea(id) {
         try {
           const response = await axios.post('http://localhost:5000/eliminar_tarea', { id });
@@ -50,6 +53,9 @@
           console.error(error);
         }
       },
+
+
+      
     },
   };
   </script>
@@ -75,20 +81,23 @@
 #contenido_top_header {
     display: flex;
     flex-direction: row;
-    background-color: rgba(211, 211, 211, 0.288);
+    background-color: rgba(70, 68, 68, 0.63);
     font-weight: bold;
 }
 
 #contenido_top_resultados{
     display: flex;
     flex-direction: row;
-    background-color: rgba(14, 13, 13, 0);
+    background-color: rgba(0, 0, 0, 0);
     font-weight: bold;
 }
+
 #campos{
-    flex-basis: calc(100% / 6);
+    flex-basis: calc(100% / 5);
     padding: 8px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 

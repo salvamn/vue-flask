@@ -34,9 +34,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1A1A1A;
-    /* position: fixed; */
-    /* bottom: 0; */
+    background-color: #0c0c0c;
+    position: fixed; 
+     bottom: 0;
     border-top:  1px solid #232323;
 }
 </style>

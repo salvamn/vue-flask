@@ -1,9 +1,6 @@
 <template>
 
-
-
-
-    <div id="contenedor_principal_inicio">
+    <section id="contenedor_principal_inicio">
 
         <div id="contenido_principal_inicio_top">
 
@@ -14,6 +11,11 @@
 
 
         </div>
+
+
+    </section>
+
+    <section id="contenedor_secundario_inicio">
 
         <div id="contenedor-tarjetas-proyectos">
 
@@ -31,9 +33,7 @@
 
         </div>
 
-
-    </div>
-
+    </section>
 
 </template>
 
@@ -41,10 +41,10 @@
 
 
 
-<script>  
-export default{
+<script>
+export default {
     components: {
-      
+
     }
 }
 
@@ -67,7 +67,7 @@ export default{
        flex-direction: column;
        background-color: #1A1A1A;
        /* margin-top: 7em; */
-       margin-bottom: 7em;
+
    }
 
 
@@ -77,11 +77,11 @@ export default{
        justify-content: center;
        align-items: center;
        width: 100%;
-       height: 100vh;
+       height: 100%;
        padding: 20px;
        border-radius: 10px;
        /*background: greenyellow;*/
-       margin-bottom: 7em;
+
 
    }
 
@@ -108,23 +108,30 @@ export default{
    }
 
 
-   #contenedor-tarjetas-proyectos{
-    width: 70%;
-    height: auto;
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
+
+   #contenedor_secundario_inicio{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   #contenedor-tarjetas-proyectos {
+       width: 70%;
+       height: 50%;
+       display: inline-flex;
+       flex-direction: row;
+       justify-content: space-around;
+       align-items: center;
+       flex-wrap: wrap;
    }
 
-   #contenedor-tarjetas-proyectos .tarjeta{
-    width: 45%;
-    height: 400px;
-    background-color: #242424;
-    margin-bottom: 10em;
-    border: 1px solid #33333375;
-    border-radius: 7px;
-    box-shadow: 0px 10px 15px -3px #0000007d;
+   #contenedor-tarjetas-proyectos .tarjeta {
+       width: 30%;
+       height: 400px;
+       background-color: #242424;
+       margin-bottom: 10em;
+       border: 1px solid #33333375;
+       border-radius: 7px;
+       box-shadow: 0px 10px 15px -3px #0000007d;
    }
-
 </style>

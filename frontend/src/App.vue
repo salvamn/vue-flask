@@ -5,8 +5,9 @@
 
         <navSito/>
 
-        <router-view/> <!---Esto se pone si osi , para tomar las rutas-->
-
+        <transition name="fade" mode="out-in">
+            <router-view/> <!---Esto se pone si osi , para tomar las rutas-->
+        </transition>   
 
         <footerSito/>
 
@@ -47,6 +48,14 @@ export default {
 @import url('@/assets/css/base.css');
 
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
 
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 
 </style>

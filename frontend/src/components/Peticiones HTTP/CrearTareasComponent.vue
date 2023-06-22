@@ -40,6 +40,9 @@ export default {
         };
     },
     methods: {
+
+
+
         async crearTarea() {
             try {
                 const response = await axios.post('http://localhost:5000/crear_tarea', this.nuevaTarea);
@@ -54,6 +57,8 @@ export default {
                 console.error(error);
             }
         },
+
+        
     },
 };
 </script>
@@ -66,7 +71,7 @@ export default {
     height: 50%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     
 }
@@ -78,16 +83,17 @@ export default {
 }
 
 #contenedor_combo_box {
+    width: 100%;
+    display: inline-flex;
 
-    display: flex;
-    justify-items: center;
-    align-items: center;
+    /*background: red;*/
 }
 
 #contenedor_boton {
-    display: flex;
-    justify-content: center;
-    width: auto;
+    display: inline-flex;
+    justify-items:center;
+    align-items: center;
+
 }
 
 #contenedor_boton #boton_crear_tarea {

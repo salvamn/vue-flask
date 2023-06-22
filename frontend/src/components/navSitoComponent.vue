@@ -12,7 +12,10 @@
             </div>
 
             <div id="submenu">
-                <strong>{{ nombreUsuario }}</strong>
+                <div id="submenu_nombre_cerrar_sesion">
+                    <h1>Bienvenido</h1><strong>{{ nombreUsuario }}</strong>
+                </div>
+                
                 <div id="submenu-contenido">
                     <router-link style="text-decoration: none;" to="/panel">Panel</router-link>
                     <router-link to="/" @click.prevent="cerrarSesion">Cerrar sesión</router-link>
@@ -86,7 +89,7 @@ export default {
 
    #navSito {
        width: 100%;
-       background-color: #1A1A1A;
+       background-color: #0c0c0c;
        display: flex;
        justify-content: space-around;
        align-items: center;
@@ -179,4 +182,16 @@ export default {
        background: rgb(9, 143, 98);
        z-index: 1;
    }
+
+   #submenu_nombre_cerrar_sesion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+   }
+
+   #submenu_nombre_cerrar_sesion strong{
+    color: #569fd3;
+   }
+   
 </style>
